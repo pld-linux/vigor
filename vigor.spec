@@ -63,14 +63,13 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}}
 	bindir=$RPM_BUILD_ROOT%{_bindir}
 )
 
-gzip -9nf README.vigor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README.vigor
 %attr(755,root,root) %{_bindir}/vigor
 %dir %{_datadir}/vigor
 %{_datadir}/vigor/perl
