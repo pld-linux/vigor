@@ -3,18 +3,18 @@ Summary(pl):	vigor - edytor podobny do vi z Panem Spinaczem
 Name:		vigor
 Version:	0.016
 Release:	1
+License:	BSD
 Group:		Applications/Editors
 Group(de):	Applikationen/Editors
 Group(pl):	Aplikacje/Edytory
 Group(pt):	Aplicações/Editores
-License:	BSD
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ncurses.patch
 URL:		http://www.red-bean.com/~joelh/vigor/
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-BuildRequires:	tk-devel
-BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	autoconf
+BuildRequires:	ncurses-devel >= 5.2
+BuildRequires:	tk-devel
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
