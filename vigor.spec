@@ -5,9 +5,6 @@ Version:	0.016
 Release:	1
 License:	BSD
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ncurses.patch
 URL:		http://www.red-bean.com/~joelh/vigor/
