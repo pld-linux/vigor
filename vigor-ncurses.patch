@@ -1,0 +1,22 @@
+--- vigor-0.014/build/configure.in.orig	Sat Feb  5 20:45:49 2000
++++ vigor-0.014/build/configure.in	Mon Mar  5 22:39:42 2001
+@@ -257,8 +257,8 @@
+ dnl Check for the termcap/termlib library.  Compile in nvi's curses routines
+ dnl unless the user specifies otherwise.  These two checks must occur in the
+ dnl current order, and -lcurses must be loaded before -ltermcap/-ltermlib.
+-AC_CHECK_LIB(termlib, tgetent,
+-	[vi_cv_termlib=-ltermlib], [vi_cv_termlib=no])
++AC_CHECK_LIB(tinfo, tgetent,
++	[vi_cv_termlib=-ltinfo], [vi_cv_termlib=no])
+ if test "$vi_cv_termlib" = no; then
+ 	AC_CHECK_LIB(termcap, tgetent,
+ 		[vi_cv_termlib=-ltermcap], [vi_cv_termlib=no])
+@@ -277,7 +277,7 @@
+ 	CPPFLAGS="-I\$(srcdir)/curses $CPPFLAGS"
+ 	cobjs="\$(COBJS)";;
+ "other curses")
+-	LIBS="-lcurses $LIBS";;
++	LIBS="-lncurses $LIBS";;
+ esac
+ 
+ dnl Checks for header files.
