@@ -2,14 +2,13 @@ Summary:	vigor - vi-compatible editor with extra something thrown in
 Summary(pl):	vigor - edytor podobny do vi z Panem Spinaczem
 Name:		vigor
 Version:	0.016
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Editors
-Group(de):	Applikationen/Editors
-Group(pl):	Aplikacje/Edytory
-Group(pt):	Aplicações/Editores
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
+# Source0-md5	5bd9a2e50581817f4a5f0e7a0f0d1a52
 Patch0:		%{name}-ncurses.patch
+Patch1:		%{name}-acfix.patch
 URL:		http://www.red-bean.com/~joelh/vigor/
 BuildRequires:	autoconf
 BuildRequires:	ncurses-devel >= 5.2
@@ -33,10 +32,12 @@ zainspirowany historyjk± User Friendly z 4 stycznia 2000.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd build
-autoconf
+cp -f /usr/share/automake/config.* .
+%{__autoconf}
 OPTFLAG=" "; export OPTFLAG
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
@@ -58,22 +59,18 @@ CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}}
 
-(cd build
-%{__make} install \
+%{__make} -C build install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
-)
-
-gzip -9nf README.vigor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README.vigor
 %attr(755,root,root) %{_bindir}/vigor
 %dir %{_datadir}/vigor
 %{_datadir}/vigor/perl
