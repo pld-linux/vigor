@@ -2,7 +2,7 @@ Summary:	vigor - vi-compatible editor with extra something thrown in
 Summary(pl):	vigor - edytor podobny do vi z Panem Spinaczem
 Name:		vigor
 Version:	0.016
-Release:	2
+Release:	3
 License:	BSD
 Group:		Applications/Editors
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
