@@ -8,12 +8,13 @@ Group:		Applications/Editors
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
 # Source0-md5:	5bd9a2e50581817f4a5f0e7a0f0d1a52
 Patch0:		%{name}-ncurses.patch
+Patch1:		%{name}-acfix.patch
 URL:		http://www.red-bean.com/~joelh/vigor/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
+BuildRequires:	automake
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	tk-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 Vigor is designed as a vi-compatible editor, with a little (*ahem*)
@@ -29,9 +30,11 @@ zainspirowany historyjk± User Friendly z 4 stycznia 2000.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd build
+cp -f /usr/share/automake/config.* .
 %{__autoconf}
 OPTFLAG=" "; export OPTFLAG
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
@@ -54,14 +57,11 @@ CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}}
 
-(cd build
-%{__make} install \
+%{__make} -C build install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	bindir=$RPM_BUILD_ROOT%{_bindir}
-)
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.vigor
 %attr(755,root,root) %{_bindir}/vigor
 %dir %{_datadir}/vigor
+%attr(755,root,root) %{_datadir}/vigor/recover
 %{_datadir}/vigor/perl
 %{_datadir}/vigor/tcl
 %dir %{_datadir}/vigor/catalog

@@ -1,0 +1,97 @@
+--- vigor-0.016/build/configure.in.orig	2003-06-19 01:51:21.000000000 +0200
++++ vigor-0.016/build/configure.in	2003-06-19 02:01:36.000000000 +0200
+@@ -30,6 +30,7 @@
+ dnl AUX:	-ZP disables _BSD_SOURCE et al, but enables POSIX at link time.
+ dnl LynxOS:	We check for gcc 2.x or better, the gcc 1 that was shipped with
+ dnl		LynxOS historically wasn't good enough.
++AC_PROG_CC
+ AC_SUBST(CPPFLAGS)
+ case "$host_os" in
+ aix3.2.5)  OPTFLAG=${OPTFLAG-"-O"};;
+@@ -95,7 +95,7 @@
+ 
+ dnl A/UX has a broken getopt(3), strpbrk(3).
+ case "$host_os" in
+-aux*)	   LIBOBJS="getopt.o strpbrk.o $LIBOBJS";;
++aux*)	   AC_LIBOBJ([getopt]); AC_LIBOBJ([strpbrk]);;
+ esac
+ 
+ dnl Ultrix has a broken POSIX.1 VDISABLE value.
+@@ -235,12 +235,13 @@
+ 	if test "X$perlldflags" != "X"; then
+ 		LDFLAGS="$perlldflags $LDFLAGS"
+ 	fi
+-	LIBOBJS="perl.o perlsfio.o $LIBOBJS"
++	AC_LIBOBJ([perl])
++	AC_LIBOBJ([perlsfio])
+ 	AC_DEFINE(HAVE_PERL_INTERP)
+ fi
+ 
+ dnl Make sure we can find a Tcl/Tk interpreter.
+-LIBOBJS="tcl.o $LIBOBJS"
++AC_LIBOBJ([tcl])
+ dnl GNU/Linux Tcl requires -ldl
+ AC_CHECK_LIB(dl,dlopen)
+ LIBS="$LIBS -lm"
+@@ -252,7 +253,7 @@
+ AC_DEFINE(HAVE_TCL_INTERP)
+ 
+ dnl Both Tcl/Tk and Perl interpreters need the vi api code.
+-LIBOBJS="api.o $LIBOBJS"
++AC_LIBOBJ([api])
+ 
+ dnl Check for the termcap/termlib library.  Compile in nvi's curses routines
+ dnl only if the user specifies to.  These two checks must occur in the
+@@ -328,12 +329,12 @@
+ 
+ dnl If we needed setenv or unsetenv, add in the clib/env.c replacement file.
+ if test "$need_env" = yes; then
+-	LIBOBJS="env.o $LIBOBJS"
++	AC_LIBOBJ([env])
+ fi
+ 
+ dnl If we need strsep, add it and define it so we get a prototype.
+ if test "$need_strsep" = yes; then
+-	LIBOBJS="strsep.o $LIBOBJS"
++	AC_LIBOBJ([strsep])
+ fi
+ 
+ dnl Check for fcntl/flock
+@@ -533,6 +534,8 @@
+ fi
+ AC_MSG_RESULT($vi_cv_sprintf_count)
+ 
++OTHEROBJS=""
++AC_SUBST(OTHEROBJS)
+ dnl We compile in nvi's DB routines only if the user specifies to.
+ AC_MSG_CHECKING(if --enable-db option specified)
+ AC_ARG_ENABLE(db,
+@@ -542,7 +545,7 @@
+ case "$vi_cv_db_lib" in
+ "bundled DB")
+ 	CPPFLAGS="-I\$(srcdir)/db/include $CPPFLAGS"
+-	LIBOBJS="\$(DBOBJS) $LIBOBJS";;
++	OTHEROBJS="$OTHEROBJS \$(DBOBJS)";;
+ "other DB")
+ 	;;
+ esac
+@@ -556,7 +559,7 @@
+ case "$vi_cv_re_lib" in
+ "bundled RE")
+ 	CPPFLAGS="-I\$(srcdir)/regex $CPPFLAGS"
+-	LIBOBJS="\$(REOBJS) $LIBOBJS";;
++	OTHEROBJS="$OTHEROBJS \$(REOBJS)";;
+ "other RE")
+ 	;;
+ esac
+--- vigor-0.016/build/Makefile.in.orig	2000-05-03 04:28:02.000000000 +0200
++++ vigor-0.016/build/Makefile.in	2003-06-19 02:00:43.000000000 +0200
+@@ -44,7 +44,7 @@
+ 
+ all: vigor
+ 
+-NVIALL=	$(CLOBJS) $(VIOBJS) @cobjs@ @LIBOBJS@
++NVIALL=	$(CLOBJS) $(VIOBJS) @cobjs@ @LIBOBJS@ @OTHEROBJS@
+ vigor: $(NVIALL)
+ 	$(SHRPENV) $(CC) $(LDFLAGS) -o $@ $(NVIALL) @LIBS@
+ 
