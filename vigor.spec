@@ -6,7 +6,7 @@ Release:	2
 License:	BSD
 Group:		Applications/Editors
 Source0:	http://www.red-bean.com/~joelh/vigor/%{name}-%{version}.tar.gz
-# Source0-md5	5bd9a2e50581817f4a5f0e7a0f0d1a52
+# Source0-md5:	5bd9a2e50581817f4a5f0e7a0f0d1a52
 Patch0:		%{name}-ncurses.patch
 Patch1:		%{name}-acfix.patch
 URL:		http://www.red-bean.com/~joelh/vigor/
