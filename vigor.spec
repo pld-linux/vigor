@@ -25,7 +25,8 @@ can freely laugh). Go ahead, I'll wait.
 
 %description -l pl
 Vigor jest edytorem kompatybilnym z vi z wbudowanym Panem Spinaczem,
-zainspirowany historyjk± User Friendly z 4 stycznia 2000.
+zainspirowany historyjk± User Friendly z 4 stycznia 2000. Warto j±
+zobaczyæ pod adresem http://www.userfriendly.org/ .
 
 %prep
 %setup -q
