@@ -33,7 +33,7 @@ zainspirowany historyjk± User Friendly z 4 stycznia 2000.
 
 %build
 cd build
-autoconf
+%{__autoconf}
 OPTFLAG=" "; export OPTFLAG
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
