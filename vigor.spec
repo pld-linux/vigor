@@ -13,8 +13,6 @@ BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	tk-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 Vigor is designed as a vi-compatible editor, with a little (*ahem*)
