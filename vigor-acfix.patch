@@ -13,7 +13,7 @@
  dnl A/UX has a broken getopt(3), strpbrk(3).
  case "$host_os" in
 -aux*)	   LIBOBJS="getopt.o strpbrk.o $LIBOBJS";;
-+aux*)	   AC_LIBOBJ([getopt]); AC_LIBOBJ([strpbrk]);;
++aux*)	   AC_LIBOBJ([getopt]) AC_LIBOBJ([strpbrk]);;
  esac
  
  dnl Ultrix has a broken POSIX.1 VDISABLE value.
