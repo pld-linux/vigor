@@ -95,17 +95,3 @@
  vigor: $(NVIALL)
  	$(SHRPENV) $(CC) $(LDFLAGS) -o $@ $(NVIALL) @LIBS@
  
-diff -Nura vigor-0.016.bef/build/configure.in vigor-0.016/build/configure.in
---- vigor-0.016.bef/build/configure.in	2004-04-12 00:03:33.000000000 +0200
-+++ vigor-0.016/build/configure.in	2004-04-12 00:29:10.000000000 +0200
-@@ -96,7 +96,9 @@
- 
- dnl A/UX has a broken getopt(3), strpbrk(3).
- case "$host_os" in
--aux*)	   AC_LIBOBJ([getopt]); AC_LIBOBJ([strpbrk]);;
-+aux*)	   AC_LIBOBJ([getopt])
-+	AC_LIBOBJ([strpbrk])
-+	;;
- esac
- 
- dnl Ultrix has a broken POSIX.1 VDISABLE value.
