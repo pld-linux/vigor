@@ -1,5 +1,5 @@
 Summary:	vigor - vi-compatible editor with extra something thrown in
-Summary(pl.UTF-8):   vigor - edytor podobny do vi z Panem Spinaczem
+Summary(pl.UTF-8):	vigor - edytor podobny do vi z Panem Spinaczem
 Name:		vigor
 Version:	0.016
 Release:	3
