@@ -1,5 +1,5 @@
 Summary:	vigor - vi-compatible editor with extra something thrown in
-Summary(pl):	vigor - edytor podobny do vi z Panem Spinaczem
+Summary(pl.UTF-8):   vigor - edytor podobny do vi z Panem Spinaczem
 Name:		vigor
 Version:	0.016
 Release:	3
@@ -23,10 +23,10 @@ storyline in the User Friendly comic. If you haven't seen it yet,
 check it out at http://www.userfriendly.org/ (and do so in a place you
 can freely laugh). Go ahead, I'll wait.
 
-%description -l pl
+%description -l pl.UTF-8
 Vigor jest edytorem kompatybilnym z vi z wbudowanym Panem Spinaczem,
-zainspirowany historyjk± User Friendly z 4 stycznia 2000. Warto j±
-zobaczyæ pod adresem <http://www.userfriendly.org/>.
+zainspirowany historyjkÄ… User Friendly z 4 stycznia 2000. Warto jÄ…
+zobaczyÄ‡ pod adresem <http://www.userfriendly.org/>.
 
 %prep
 %setup -q
