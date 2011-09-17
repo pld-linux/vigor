@@ -36,6 +36,7 @@ zobaczyć pod adresem <http://www.userfriendly.org/>.
 %build
 cd build
 cp -f /usr/share/automake/config.* .
+%{__aclocal}
 %{__autoconf}
 OPTFLAG=" "; export OPTFLAG
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
